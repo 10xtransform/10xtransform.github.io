@@ -1,0 +1,615 @@
+/* --- Global Styles & Variables --- */
+:root {
+    /* Grayscale Palette */
+    --primary-color: #374151; /* Gray 700 - Main accent color */
+    --primary-dark: #1F2937; /* Gray 800 - Hover state */
+    --secondary-color: #F3F4F6; /* Gray 100 - Light background */
+    --text-color: #374151; /* Gray 700 - Default text */
+    --heading-color: #111827; /* Gray 900 - Headings */
+    --light-text: #6B7280; /* Gray 500 - Lighter text */
+    --white: #ffffff;
+    --black: #000000;
+    --border-color: #E5E7EB; /* Gray 200 - Borders */
+
+    --font-family: 'Inter', sans-serif;
+    --base-font-size: 16px;
+    --container-width: 1140px;
+    --border-radius: 8px;
+    --section-padding: 60px 0;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: var(--font-family);
+    font-size: var(--base-font-size);
+    color: var(--text-color);
+    line-height: 1.6;
+    background-color: var(--white);
+}
+
+h1, h2, h3, h4, h5, h6 {
+    color: var(--heading-color);
+    margin-bottom: 0.8em;
+    line-height: 1.3;
+}
+
+h1 { font-size: 2.8rem; }
+h2 { font-size: 2rem; text-align: center; margin-bottom: 40px; }
+h3 { font-size: 1.4rem; }
+
+p {
+    margin-bottom: 1em;
+}
+
+a {
+    color: var(--primary-color);
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+a:hover {
+    color: var(--primary-dark);
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+strong { /* Style for emphasized text like the product name */
+    font-weight: 700; /* Or adjust as needed */
+    color: var(--heading-color); /* Make it stand out slightly more if desired */
+}
+
+/* --- Utility Classes --- */
+.container {
+    max-width: var(--container-width);
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* --- Header / Navigation --- */
+header {
+    background-color: var(--white);
+    padding: 15px 0;
+    border-bottom: 1px solid var(--border-color);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+nav.container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--heading-color);
+}
+.logo:hover {
+    color: var(--heading-color);
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 25px;
+    position: relative; /* Needed for absolute positioning of dropdown */
+}
+
+nav ul li {
+    position: relative; /* Each li is a potential parent for dropdown */
+}
+
+nav ul li a {
+    color: var(--text-color);
+    font-weight: 500;
+    padding: 10px 0; /* Add some padding for easier hover */
+    display: block; /* Make the link fill the li */
+}
+
+nav ul li a:hover {
+    color: var(--black);
+}
+
+/* Dropdown Menu Styles */
+nav ul .dropdown-menu {
+    display: none; /* Hidden by default */
+    position: absolute;
+    top: 100%; /* Position below the parent li */
+    left: 0;
+    background-color: var(--white);
+    border: 1px solid var(--border-color);
+    border-radius: 0 0 var(--border-radius) var(--border-radius);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+    min-width: 160px; /* Minimum width for the dropdown */
+    z-index: 101; /* Ensure dropdown is above other content */
+    padding: 5px 0; /* Padding inside the dropdown box */
+    flex-direction: column; /* Stack dropdown items vertically */
+    gap: 0; /* Remove gap inherited from parent ul */
+}
+
+nav ul li:hover > .dropdown-menu,
+nav ul li:focus-within > .dropdown-menu { /* Show on hover or focus within parent */
+    display: block;
+}
+
+nav ul .dropdown-menu li {
+    width: 100%; /* Make list items fill dropdown width */
+}
+
+nav ul .dropdown-menu li a {
+    color: var(--text-color);
+    padding: 8px 15px; /* Padding for dropdown links */
+    display: block; /* Ensure link takes full width */
+    white-space: nowrap; /* Prevent text wrapping */
+    font-weight: 400; /* Normal weight for dropdown items */
+}
+
+nav ul .dropdown-menu li a:hover {
+    background-color: var(--secondary-color); /* Light background on hover */
+    color: var(--black);
+}
+
+
+/* --- Hero Section --- */
+.hero {
+    padding: 80px 0;
+    text-align: center;
+    background-color: var(--white);
+}
+
+.hero h1 {
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 20px;
+}
+
+.hero p {
+    font-size: 1.15rem;
+    color: var(--light-text);
+    max-width: 650px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 30px;
+}
+
+/* --- Showcase / Tabs Section --- */
+.showcase {
+    padding: var(--section-padding);
+    background-color: var(--secondary-color);
+}
+
+.tabs {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 30px;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.tab-link {
+    padding: 10px 25px;
+    cursor: pointer;
+    border: none;
+    background-color: transparent;
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: var(--light-text);
+    border-radius: var(--border-radius);
+    border-bottom: 3px solid transparent;
+    transition: color 0.3s ease, border-color 0.3s ease;
+}
+
+.tab-link:hover {
+    color: var(--heading-color);
+}
+
+.tab-link.active {
+    color: var(--heading-color);
+    border-bottom-color: var(--heading-color);
+}
+
+.tab-content {
+    display: none;
+    background-color: var(--white);
+    padding: 30px;
+    border-radius: var(--border-radius);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+}
+
+.tab-content.active {
+    display: block;
+}
+
+.content-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+}
+
+.text-content {
+    flex: 1;
+}
+.text-content h3 {
+    margin-bottom: 10px; /* Adjust spacing below tab title */
+}
+
+.visual-placeholder {
+    flex-basis: 50%;
+    text-align: center;
+    border-radius: var(--border-radius);
+    overflow: hidden;
+}
+
+.visual-placeholder img {
+    border-radius: var(--border-radius);
+}
+
+/* --- Benefits Section --- */
+.benefits {
+    padding: var(--section-padding);
+}
+
+.benefits-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+}
+
+.benefit-item {
+    background-color: var(--white);
+    padding: 25px;
+    border-radius: var(--border-radius);
+    text-align: left;
+    border: 1px solid var(--border-color);
+}
+
+.benefit-item .icon {
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+    color: var(--primary-color);
+    font-weight: bold; /* Example styling for [ICON] text */
+}
+
+.benefit-item h3 {
+    margin-bottom: 10px;
+}
+
+.benefit-item p {
+    font-size: 0.95rem;
+    color: var(--light-text);
+    margin-bottom: 15px; /* Add space before the bullet list */
+}
+
+/* Styling for the bullet points in benefits section */
+.benefit-details {
+    list-style: disc; /* Use standard bullet points */
+    margin-left: 20px; /* Indent the list */
+    padding-left: 0; /* Reset padding if needed */
+}
+
+.benefit-details li {
+    font-size: 0.9rem; /* Slightly smaller text for list items */
+    color: var(--light-text); /* Use light text color */
+    margin-bottom: 5px; /* Space between list items */
+    line-height: 1.5;
+}
+
+
+/* --- Final CTA Section (Simplified) --- */
+.cta-final {
+    padding: 40px 0;
+    background-color: var(--secondary-color);
+    text-align: center;
+}
+
+.cta-final h2 {
+    color: var(--heading-color);
+    margin-bottom: 0;
+}
+
+/* --- Contact Section --- */
+.contact-section {
+    padding: 40px 0;
+    text-align: center;
+    background-color: var(--white);
+    border-top: 1px solid var(--border-color);
+}
+.contact-section h2 {
+    margin-bottom: 15px;
+}
+.contact-section p {
+    color: var(--text-color);
+    margin-bottom: 10px;
+}
+.contact-section .email-link {
+    font-weight: 500;
+    color: var(--primary-color);
+    font-size: 1.1rem;
+}
+.contact-section .email-link:hover {
+    color: var(--primary-dark);
+}
+
+/* --- Header / Navigation Adjustments --- */
+nav.container a.logo {
+    display: inline-block; /* Or flex if aligning text next to it */
+    vertical-align: middle; /* Align image vertically if needed */
+    line-height: 1; /* Prevent extra space from line height */
+    font-size: 0; /* Hide text if only using image logo */
+}
+
+.logo-image {
+    max-height: 40px; /* Adjust max height as needed for header logo */
+    width: auto;      /* Maintain aspect ratio */
+    display: block;   /* Or inline-block */
+}
+
+/* --- Benefits Section Icon Adjustments --- */
+.benefit-item .icon {
+    /* Remove text-specific styles if any were added */
+    /* font-size: 1.5rem; */
+    /* color: var(--primary-color); */
+    /* font-weight: bold; */
+
+    margin-bottom: 15px;
+    line-height: 1; /* Prevent extra space */
+    min-height: 40px; /* Ensure space for the icon */
+    /* Optional: center the icon */
+    /* display: flex;
+    justify-content: center;
+    align-items: center; */
+}
+
+.benefit-icon-img {
+    max-height: 40px; /* Adjust max height for icon images */
+    max-width: 40px; /* Adjust max width for icon images */
+    width: auto;
+    height: auto;
+    display: inline-block; /* Allow text to wrap if needed, or block */
+    vertical-align: middle;
+}
+
+/* --- Footer Logo Adjustment --- */
+.footer-left a.logo {
+    display: inline-block; /* Allow text to sit beside if needed */
+    margin-bottom: 10px;
+    font-size: 0; /* Hide text if using image only */
+}
+
+.footer-logo-image {
+     max-height: 35px; /* Adjust footer logo size */
+     width: auto;
+     display: block;
+     /* Optional: Add filter for dark background */
+     /* filter: brightness(0) invert(1); */ /* Makes logo white */
+}
+
+
+
+/* --- Footer --- */
+footer {
+    background-color: var(--heading-color);
+    color: var(--light-text);
+    padding: 30px 0;
+    font-size: 0.9rem;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.footer-left .logo {
+    color: var(--white);
+    font-size: 1.3rem;
+    display: block;
+    margin-bottom: 10px;
+}
+
+.footer-left p {
+    margin-bottom: 0;
+    color: var(--secondary-color);
+}
+
+.footer-right {
+   min-height: 1px;
+}
+
+/* --- Responsive Adjustments --- */
+@media (max-width: 992px) {
+    .content-wrapper {
+        flex-direction: column;
+        text-align: center;
+    }
+    .text-content {
+        margin-bottom: 20px;
+    }
+    .visual-placeholder {
+        flex-basis: auto;
+        width: 80%;
+        margin: 0 auto;
+    }
+    .benefits-grid {
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    }
+}
+
+/* --- Styles specific to About Page --- */
+
+/* Style for the simple title section */
+.page-title-section {
+    padding: 40px 0 20px 0; /* Padding top/bottom */
+    background-color: var(--white); /* Or var(--secondary-color) if preferred */
+    text-align: center; /* Center the H1 */
+    border-bottom: 1px solid var(--border-color); /* Optional separator */
+}
+
+.page-title-section h1 {
+    margin-bottom: 0; /* Remove default margin if title is alone */
+}
+
+/* Style for the main content area of the About page */
+.about-content {
+    padding: var(--section-padding); /* Reuse standard section padding */
+    background-color: var(--white);
+}
+
+.about-content .container {
+    max-width: 900px; /* Slightly narrower container for text-heavy page */
+}
+
+.about-content h2 {
+    text-align: left; /* Override centered h2 for this section */
+    margin-top: 30px; /* Add space above headings */
+    margin-bottom: 15px;
+    font-size: 1.8rem; /* Slightly smaller H2 */
+}
+.about-content h2:first-of-type {
+    margin-top: 0; /* No top margin for the very first H2 */
+}
+
+
+.about-content h3 {
+    margin-top: 20px;
+    margin-bottom: 8px;
+    font-size: 1.3rem;
+}
+
+.about-content p {
+    color: var(--text-color); /* Ensure consistent paragraph text color */
+    line-height: 1.7; /* Slightly more line height for readability */
+    margin-bottom: 1em;
+}
+
+/* Style for the optional divider */
+.content-divider {
+    border: none;
+    border-top: 1px solid var(--border-color);
+    margin: 40px 0; /* Space above and below the divider */
+}
+
+/* Simple layout for services (optional) */
+.services-list {
+    margin-top: 20px;
+    /* Optional: Use display: grid for columns on larger screens */
+    /* display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px; */
+}
+
+.service-item {
+    margin-bottom: 20px; /* Space between service items if stacked */
+}
+
+/* Reuse email link style from contact section */
+.about-content .email-link {
+    font-weight: 500;
+    color: var(--primary-color);
+    font-size: 1.1rem;
+}
+.about-content .email-link:hover {
+    color: var(--primary-dark);
+}
+
+
+@media (max-width: 768px) {
+    h1 { font-size: 2.2rem; }
+    h2 { font-size: 1.8rem; }
+
+    /* Adjust nav for smaller screens if needed (e.g., hamburger menu) */
+    /* Simple stacking for now: */
+     nav.container {
+        flex-direction: column;
+        gap: 10px; /* Reduce gap */
+        align-items: flex-start; /* Align items left */
+    }
+     nav ul {
+        /* Reset some flex properties if stacking */
+        margin-top: 10px;
+        width: 100%; /* Make nav full width */
+        gap: 15px; /* Adjust gap */
+        justify-content: flex-start;
+    }
+    /* Hide dropdown on small screens by default, needs JS for toggle */
+     nav ul .dropdown-menu {
+        /* You might want JS to handle dropdowns on mobile (e.g., on click) */
+        /* For now, let's keep hover but adjust positioning */
+        left: 0; /* Align dropdown to the left edge of parent */
+        min-width: 100%; /* Full width dropdown */
+    }
+     nav ul li:hover > .dropdown-menu {
+         display: block; /* Keep hover for simplicity, but click is better for mobile */
+     }
+
+
+    .hero {
+        padding: 60px 0;
+    }
+
+    .footer-content {
+       flex-direction: column;
+       text-align: center;
+    }
+    .footer-right {
+        margin-top: 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    .tabs {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    .tab-link {
+        text-align: center;
+    }
+     .benefits-grid {
+        grid-template-columns: 1fr;
+    }
+    .content-wrapper {
+         gap: 20px;
+    }
+    .visual-placeholder {
+        width: 100%;
+    }
+     /* Further refine mobile navigation if needed */
+     nav ul {
+         flex-direction: column; /* Stack nav items vertically */
+         align-items: flex-start;
+         gap: 5px;
+     }
+     nav ul li {
+         width: 100%; /* Make list items full width */
+     }
+     nav ul .dropdown-menu {
+         position: static; /* Remove absolute positioning */
+         display: none; /* Hide initially, needs JS toggle */
+         box-shadow: none;
+         border: none;
+         padding-left: 15px; /* Indent sub-items */
+     }
+     /* Add JS to toggle .dropdown-menu on click of parent */
+     nav ul li:hover > .dropdown-menu {
+          display: block; /* Show on click instead of hover via JS */
+     }
+
+}
